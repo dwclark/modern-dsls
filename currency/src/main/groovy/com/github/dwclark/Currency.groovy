@@ -14,6 +14,11 @@ class Currency {
         this.amount = amount;
     }
 
+    @Override
+    public String toString() {
+        return "${id.symbol}${amount}";
+    }
+
     Currency plus(final Currency rhs) {
         return new Currency(id, amount + convertValue(rhs, id));
     }
@@ -22,11 +27,11 @@ class Currency {
         return new Currency(id, amount - convertValue(rhs, id));
     }
 
-    Currency mulitply(final BigDecimal rhs) {
+    Currency multiply(final Number rhs) {
         return new Currency(id, rhs * amount);
     }
 
-    Currency div(final BigDecimal rhs) {
+    Currency div(final Number rhs) {
         return new Currency(id, amount / rhs);
     }
 

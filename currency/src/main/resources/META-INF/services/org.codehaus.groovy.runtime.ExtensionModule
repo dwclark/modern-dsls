@@ -1,3 +1,3 @@
 moduleName = currency-module
 moduleVersion = 1.0
-extensionClasses = CurrencyExtension
+extensionClasses = com.github.dwclark.CurrencyExtension
