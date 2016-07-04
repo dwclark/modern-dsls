@@ -1,0 +1,5 @@
+import static Email.*;
+
+email {
+    
+}
