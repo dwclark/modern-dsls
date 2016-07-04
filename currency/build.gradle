@@ -1,0 +1,17 @@
+apply plugin: 'groovy'
+
+sourceCompatibility = 8
+targetCompatibility = 8
+
+group = 'com.github.dwclark'
+version = '0.1'
+
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    compile('org.codehaus.groovy:groovy-all:2.4.6')
+    testCompile('org.spockframework:spock-core:1.0-groovy-2.4')
+}

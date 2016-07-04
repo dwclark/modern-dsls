@@ -1,6 +1,10 @@
-import static ExchangeRates.*;
-import static CurrencyId.*;
+package com.github.dwclark;
 
+import static com.github.dwclark.ExchangeRates.*;
+import static com.github.dwclark.CurrencyId.*;
+import groovy.transform.CompileStatic;
+
+@CompileStatic
 class Currency {
     final CurrencyId id;
     final BigDecimal amount;
@@ -36,7 +40,7 @@ class Currency {
 
     Object asType(final Class type) {
         if(type == Boolean || type == boolean) {
-            return c.amount.compareTo(BigDecimal.ZERO) == 0;
+            return amount.compareTo(BigDecimal.ZERO) == 0;
         }
         else {
             throw new ClassCastException("Can't cast Currency to ${type}");
@@ -44,18 +48,18 @@ class Currency {
     }
 
     Currency getDollars() {
-        return id == DOLLARS ? this : convert(this, DOLLARS);
+        return id == DOLLAR ? this : convert(this, DOLLAR);
     }
 
     Currency getPounds() {
-        return id == POUNDS ? this : convert(this, PUNDS);
+        return id == POUND ? this : convert(this, POUND);
     }
 
     Currency getEuros() {
-        return id == EUROS ? this : convert(this, EUROS);
+        return id == EURO ? this : convert(this, EURO);
     }
 
     Currency getRupees() {
-        return id == RUPEES ? this : convert(this, RUPEES);
+        return id == RUPEE ? this : convert(this, RUPEE);
     }
 }

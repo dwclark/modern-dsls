@@ -1,3 +1,5 @@
+package com.github.dwclark;
+
 enum CurrencyId {
 
     DOLLAR('$'), POUND('£'), EURO('€'), RUPEE('₹');
