@@ -7,10 +7,19 @@ class Scheduler {
 
     final ScheduledExecutorService service = Executors.newScheduledThreadPool(Runtime.getRuntime().availableProcessors());
     final List<Task> tasks = [];
+    private static final ThreadLocal<Scheduler> _current = new ThreadLocal();
+
+    public static void current(final Scheduler scheduler) {
+        _current.set(scheduler);
+    }
+    
+    public static Scheduler current() {
+        return _current.get();
+    }
     
     static abstract class Task {
         long time;
-        TimeUnits units;
+        TimeUnit units;
         Closure toExecute;
 
         public Runnable safe() {
@@ -23,41 +32,38 @@ class Scheduler {
                 } } as Runnable;
         }
         
-        abstract void execute(Closure closure);
+        void execute(Closure closure) {
+            this.toExecute = closure;
+        }
+        
         abstract protected void schedule(ScheduledExecutorService service);
     }
     
-    static class RepeatingTask {
-        void execute(Closure closure) {
-            toExecute = closure;
-        }
-
+    static class RepeatingTask extends Task {
         protected void schedule(ScheduledExecutorService service) {
             service.scheduleAtFixedRate(safe(), time, time, units);
         }
     }
 
-    static class SingleTask {
-        void execute(Closure closure) {
-            toExecute = closure;
-        }
-
+    static class SingleTask extends Task {
         protected void schedule(ScheduledExecutorService service) {
             service.schedule(safe(), time, units);
         }
     }
 
-    public RepeatingTask every(Map interval) {
-        long key = interval.keySet().iterator().next() as long;
-        RepeatingTask t = new RepeatingTask(time: key, units: interval['units'] as TimeUnit);
-        tasks << t;
+    public static RepeatingTask every(Map interval) {
+        Object key = interval.keySet().iterator().next();
+        Object value = interval[key];
+        RepeatingTask t = new RepeatingTask(time: key as long, units: value as TimeUnit);
+        current().tasks << t;
         return t;
     }
 
-    public SingleTask once(Map interval) {
-        long key = interval.keySet().iterator().next() as long;
-        SingleTask t = new SingleTask(time: key, units: interval['units'] as TimeUnit);
-        tasks << t;
+    public static SingleTask once(Map interval) {
+        Object key = interval.keySet().iterator().next();
+        Object value = interval[key];
+        SingleTask t = new SingleTask(time: key as long, units: value as TimeUnit);
+        current().tasks << t;
         return t;
     }
 

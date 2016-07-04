@@ -6,15 +6,3 @@ unresolvedVariable { var ->
         handled = true;
     }
 }
-
-methodNotFound { receiver, name, argList, argTypes, call ->
-    if(name == 'every') { 
-        handled = true;
-        return newMethod('every', classNodeFor(Scheduler));
-    }
-
-    if(name == 'once') {
-        handled = true;
-        return newMethod('once', classNodeFor(Scheduler));
-    }
-}
