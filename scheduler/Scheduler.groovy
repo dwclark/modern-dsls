@@ -59,7 +59,7 @@ class Scheduler {
         return t;
     }
 
-    public static SingleTask once(Map interval) {
+    public static SingleTask after(Map interval) {
         Object key = interval.keySet().iterator().next();
         Object value = interval[key];
         SingleTask t = new SingleTask(time: key as long, units: value as TimeUnit);
