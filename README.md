@@ -4,15 +4,15 @@ In this project are 5 sub projects, plus the presentation itself. A description 
 
 ## email - Simple Closure Based DSL
 
-This project simulates a simple email dsl. The Email.groovy file defines the DSL and basic.groovy uses the DSL. To see the DSL in action simply run basic.groovy from inside groovysh or groovyConsole.
+This project simulates a simple email dsl. The `Email.groovy` file defines the DSL and `basic.groovy` uses the DSL. To see the DSL in action simply run `groovy basic.groovy`.
 
 ## emailForIde - Simple Closure Based DSL with IDE Enhancements
 
-This project is virtually identical to the email project. The only differences are an IntelliJ project file and a slight modification to the DSL in Email.groovy. The DSL now uses the @DelegatesTo annotation which should allow IntelliJ to provide code completion. Run the project in the same way as the email project.
+This project is virtually identical to the email project. The only differences are an IntelliJ project file and a slight modification to the DSL in `Email.groovy`. The DSL now uses the `@DelegatesTo` annotation which should allow IntelliJ to provide code completion. Run the project in the same way as the email project.
 
 ## emailBaseScript - Simple Script Based DSL
 
-Again, this is virtually the same DSL as in email and emailForIde. The difference is that the DSL is defined as a custom base script. This means that basic.groovy now uses the @BaseScript annotation to tell groovy to run this instead of the default base shell script. Run it in the same way as email and emailForIde.
+Again, this is virtually the same DSL as in email and emailForIde. The difference is that the DSL is defined as a custom base script. This means that `basic.groovy` now uses the `@BaseScript` annotation to tell groovy to run this instead of the default base shell script. Run it in the same way as email and emailForIde.
 
 ## scheduler - A More Complete DSL
 
