@@ -4,17 +4,25 @@ In this project are 5 sub projects, plus the presentation itself. A description 
 
 ## email - Simple Closure Based DSL
 
+** DSL Topics Covered: Basic closure based DSL **
+
 This project simulates a simple email dsl. The `Email.groovy` file defines the DSL and `basic.groovy` uses the DSL. To see the DSL in action simply run `groovy basic.groovy`.
 
 ## emailForIde - Simple Closure Based DSL with IDE Enhancements
+
+** DSL Topics Covered: IDE Support with @DelegatesTo, basic type checking with @DelegatesTo **
 
 This project is virtually identical to the email project. The only differences are an IntelliJ project file and a slight modification to the DSL in `Email.groovy`. The DSL now uses the `@DelegatesTo` annotation which should allow IntelliJ to provide code completion. Run the project in the same way as the email project.
 
 ## emailBaseScript - Simple Script Based DSL
 
+** DSL Topics Covered: @BaseScript for customized scripts **
+
 Again, this is virtually the same DSL as in email and emailForIde. The difference is that the DSL is defined as a custom base script. This means that `basic.groovy` now uses the `@BaseScript` annotation to tell groovy to run this instead of the default base shell script. Run it in the same way as email and emailForIde.
 
 ## scheduler - A More Complete DSL
+
+** DSL Topics Covered: Compilation customizers, type checking extensions, fully type checked DSL's **
 
 The DSL provides a simple scheduler DSL to demonstrate compilation customizers and type checking extensions. To run the demo, execute "groovy Launch.groovy".
 
@@ -24,6 +32,8 @@ The DSL provides a simple scheduler DSL to demonstrate compilation customizers a
 * `Launch.groovy` - This is the script that should be run to launch the scheduler. The main thing this script does is set up the environment. It defines the type checking extension to be used, forces the scheduler script to be type checked, adds implicit imports, and creates the Scheduler object.
 
 ## currency - Demonstrates Extension Modules and Operator Overloading
+
+** DSL Topics Covered: Extension module creation and operator overloading **
 
 This project isn't technically a DSL, but it does show two techniques that are used when making DSL's: extension modules and operator overloading. Because extension modules must be compiled before being used, this is an actual gradle project. The easiest way to see this in action is the following:
 
