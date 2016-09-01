@@ -35,6 +35,24 @@ class Scheduler {
         void execute(Closure closure) {
             this.toExecute = closure;
         }
+
+        public Task seconds(Closure toExecute) {
+            this.units = TimeUnit.SECONDS;
+            this.toExecute = toExecute;
+            return this;
+        }
+
+        public Task minutes(Closure toExecute) {
+            this.units = TimeUnit.MINUTES;
+            this.toExecute = toExecute;
+            return this;
+        }
+
+        public Task milliseconds(Closure toExecute) {
+            this.units = TimeUnit.MILLISECONDS;
+            this.toExecute = toExecute;
+            return this;
+        }
         
         abstract protected void schedule(ScheduledExecutorService service);
     }
@@ -51,18 +69,14 @@ class Scheduler {
         }
     }
 
-    public static RepeatingTask every(Map interval) {
-        Object key = interval.keySet().iterator().next();
-        Object value = interval[key];
-        RepeatingTask t = new RepeatingTask(time: key as long, units: value as TimeUnit);
+    public static RepeatingTask every(Number number) {
+        RepeatingTask t = new RepeatingTask(time: number as long);
         current().tasks << t;
         return t;
     }
 
-    public static SingleTask after(Map interval) {
-        Object key = interval.keySet().iterator().next();
-        Object value = interval[key];
-        SingleTask t = new SingleTask(time: key as long, units: value as TimeUnit);
+    public static SingleTask after(Number number) {
+        SingleTask t = new SingleTask(time: number as long);
         current().tasks << t;
         return t;
     }
