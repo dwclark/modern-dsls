@@ -1,3 +1,5 @@
+//This is the main DSL file for the scheduler
+
 log.debug("Starting the scheduler");
 
 every 5 seconds { println("Every 5 seconds, ${new Date()}"); }
